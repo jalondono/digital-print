@@ -1,3 +1,4 @@
+import numpy as np
 def get_segment_setup(number: int) -> dict:
     """
     Extract a setup from a dict that contain the setup for any number
@@ -38,53 +39,37 @@ def print_digits(size: int, expression: str):
     :param expression: string with the numbers to print
     :return:
     """
-    hor_symbol = ' -'
+    hor_symbol = '-'
     ver_symbol = '|'
-    segments = ['a', 'b', 'd', 'e', 'g']
-    hor_segments = ['a', 'd', 'g']
-    str_all_segments = []
-    segs_ok = []
-    space_bwn_digits = ' ' * size
-    space_bwn_verticals = (' ' * ((size*2) - 1))
-    seg_str = ''
-    vertical_seg_flag = False
-    non_active_seg_flag = False
+    segments = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+    base_segment = np.array([0, 1])
 
-    digits = convert2integers(expression)
-
-    for seg in segments:
-        seg_str = ''
-        for n in digits:
-            seg_setup = get_segment_setup(n)
-            seg_status = seg_setup[seg]
-            'If the segment needs turn ON'
+    h_new = (size * 4) + 3
+    w_new = (size * 2) + 1
+    ini = int(h_new / 2) + 1
+    list_digits = []
+    digit_array = np.zeros((h_new, w_new), dtype=int)
+    numbers = convert2integers(expression)
+    for n in numbers:
+        segment_setup = get_segment_setup(n)
+        for seg in segments:
+            seg_status = segment_setup[seg]
             if seg_status:
-                if seg in hor_segments:
-                    'If the segment is vertical'
-                    seg_str += (hor_symbol * size) + ' ' + space_bwn_digits
-                else:
-                    'If the segment is Horizontal it need to draw in parallel'
-                    vertical_seg_flag = True
-                    if seg == 'b':
-                        seg_str += ver_symbol + space_bwn_verticals
-                    if seg_setup['c']:
-                        seg_str += ver_symbol + space_bwn_digits
-
-                    elif seg == 'e':
-                        seg_str += ver_symbol + space_bwn_verticals
-                        if seg_setup['f']:
-                            seg_str += ver_symbol + space_bwn_digits
-            else:
-                non_active_seg_flag = True
-
-        if non_active_seg_flag:
-            non_active_seg_flag = False
-            continue
-
-        seg_str += '\n'
-        if vertical_seg_flag:
-            vertical_seg_flag = False
-            seg_str *= size
-        str_all_segments.append(seg_str)
-    for line in str_all_segments:
-        print(line.format(end=''))
+                new_value_seg = np.tile(base_segment, size)
+                if seg == 'a':
+                    digit_array[0, 0:size*2] = new_value_seg
+                elif seg == 'b':
+                    digit_array[0:size*2, 0] = new_value_seg
+                elif seg == 'c':
+                    digit_array[0:size*2, size*2] = new_value_seg
+                elif seg == 'd':
+                    digit_array[(size*2 + 1), 0:size*2] = new_value_seg
+                elif seg == 'e':
+                    digit_array[ini:h_new - 1, 0] = new_value_seg
+                elif seg == 'f':
+                    digit_array[ini:h_new - 1, size*2] = new_value_seg
+                elif seg == 'g':
+                    digit_array[h_new - 1, 0:size*2] = new_value_seg
+    list_digits.append(digit_array)
+    digit_array = np.zeros((h_new, w_new), dtype=int)
+    print()
