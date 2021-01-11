@@ -1,6 +1,5 @@
-import contextlib
 import unittest
-from io import StringIO
+
 
 from src.parse_input import verify_input
 from src.parse_input import str2list
@@ -25,7 +24,7 @@ class TestVerifyInput(unittest.TestCase):
         self.assertRaises(ValueError, verify_input, '3.154 0.0')
 
 
-class Str2List(unittest.TestCase):
+class TestStr2List(unittest.TestCase):
     # Verify_input function
     def test_convert(self):
         # test conversion str to list
