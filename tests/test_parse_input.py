@@ -1,5 +1,6 @@
+import contextlib
 import unittest
-
+from io import StringIO
 
 from src.parse_input import verify_input
 from src.parse_input import str2list
@@ -9,19 +10,43 @@ class TestVerifyInput(unittest.TestCase):
     # Verify_input function
     def test_spaces(self):
         # test more than 2 arguments
-        self.assertRaises(ValueError, verify_input, '3,154 0,0 66')
+        temp_stdout = StringIO()
+        inp = 'The format input is incorrect, Should be as follow: \n <size>,<number>\n'
+        with contextlib.redirect_stdout(temp_stdout):
+            verify_input('3,154 0,0 66')
+        output = temp_stdout.getvalue()
+
+        self.assertMultiLineEqual(inp, output)
 
     def test_negative_values(self):
         # Test negative values un input
-        self.assertRaises(ValueError, verify_input, '-3,154 0,0')
+        temp_stdout = StringIO()
+        inp = 'The format input is incorrect, Should be as follow: \n <size>,<number>\n'
+        with contextlib.redirect_stdout(temp_stdout):
+            verify_input('-3,154 0,0')
+        output = temp_stdout.getvalue()
+
+        self.assertMultiLineEqual(inp, output)
 
     def test_blank_spaces(self):
         # test blank spaces in the input
-        self.assertRaises(ValueError, verify_input, ' -3,154    0,0 ')
+        temp_stdout = StringIO()
+        inp = 'The format input is incorrect, Should be as follow: \n <size>,<number>\n'
+        with contextlib.redirect_stdout(temp_stdout):
+            verify_input(' -3,154    0,0 ')
+        output = temp_stdout.getvalue()
+
+        self.assertMultiLineEqual(inp, output)
 
     def test_dot_instead_comas(self):
         # test the input with dots instead comas
-        self.assertRaises(ValueError, verify_input, '3.154 0.0')
+        temp_stdout = StringIO()
+        inp = 'The format input is incorrect, Should be as follow: \n <size>,<number>\n'
+        with contextlib.redirect_stdout(temp_stdout):
+            verify_input('3.154 0.0')
+        output = temp_stdout.getvalue()
+
+        self.assertMultiLineEqual(inp, output)
 
 
 class TestStr2List(unittest.TestCase):
