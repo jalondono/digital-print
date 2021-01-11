@@ -1,11 +1,10 @@
 # Digital numbers printer
 #### Funcitionalities:
-* Print an input sequence of numbers, in digital mode}
+* Print an input sequence of numbers, in digital mode
 * Can handle the digit sizes of the print
 
 #### Steps to run it:
-* Get a computer with Linux OS
-* Clone the repo, when in your machine, It doesn't matter the path
+* Clone the repository in your machine, It doesn't matter the path
 ```
 - git clone https://github.com/jalondono/digital-print/tree/dev
 - cd digital-print
