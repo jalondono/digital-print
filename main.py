@@ -1,6 +1,6 @@
-print_digits = __import__('str2digital').transform_numbers
-verify_input = __import__('parse_input').verify_input
-str2list = __import__('parse_input').str2list
+from src.str2digital import transform_numbers
+from src.parse_input import verify_input
+from src.parse_input import str2list
 
 
 if __name__ == '__main__':
@@ -11,7 +11,7 @@ if __name__ == '__main__':
         arg_lists = str2list(validated_input)
         size = int(arg_lists[0])
         expression = arg_lists[1]
-        print_digits(size, expression)
+        transform_numbers(size, expression)
         if len(arg_lists) > 2:
             exit()
 
