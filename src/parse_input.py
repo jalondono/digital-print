@@ -7,7 +7,7 @@ def verify_input(text_input: str) -> str:
     :param text_input:
     :return: a list with size, expression and extra args or None
     """
-    pattern = '[0-9],[0-9]* (0,0)?\s*'
+    pattern = '[0-9],[0-9]*\s*(0,0)?\s*'
     fullmatch = re.fullmatch(pattern, text_input)
     if fullmatch:
         return fullmatch.string
