@@ -6,11 +6,25 @@
 #### Steps to run it:
 * Get a computer with Linux OS
 * Clone the repo, when in your machine, It doesn't matter the path
+```
 - git clone https://github.com/jalondono/digital-print/tree/dev
-- Type: cd digital-print
+- cd digital-print
+```
 * Install the requirements file using this command
+```
 - pip install -r requirements.txt
-* Once done this, just run it using the next command  "./main.py"  
+```
+* Once done this, just run it using the next command
+  ```
+  ./main.py
+  ```
+
+### How run the tests:
+* Checkout to test branch using this command:
+```
+git checkout test
+python -m unittest discover
+```
 
 #### Examples
 * To print a number use this format:
