@@ -8,9 +8,10 @@ if __name__ == '__main__':
         print('Type an input and press ENTER')
         text_input = input()
         validated_input = verify_input(text_input)
-        arg_lists = str2list(validated_input)
-        size = int(arg_lists[0])
-        expression = arg_lists[1]
-        transform_numbers(size, expression)
-        if len(arg_lists) > 2:
-            exit()
+        if validated_input != '':
+            arg_lists = str2list(validated_input)
+            size = int(arg_lists[0])
+            expression = arg_lists[1]
+            transform_numbers(size, expression)
+            if len(arg_lists) > 2:
+                exit()
