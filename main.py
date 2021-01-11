@@ -14,4 +14,3 @@ if __name__ == '__main__':
         transform_numbers(size, expression)
         if len(arg_lists) > 2:
             exit()
-
