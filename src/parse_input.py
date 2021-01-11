@@ -11,7 +11,7 @@ def verify_input(text_input: str) -> str:
     fullmatch = re.fullmatch(pattern, text_input)
     if fullmatch:
         return fullmatch.string
-    raise Exception('The format input is incorrect, Should be as follow: \n <size>,<number>')
+    raise ValueError('The format input is incorrect, Should be as follow: \n <size>,<number>')
 
 
 def str2list(valid_input: str) -> list:
