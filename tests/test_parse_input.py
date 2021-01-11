@@ -29,5 +29,12 @@ class Str2List(unittest.TestCase):
     # Verify_input function
     def test_convert(self):
         # test conversion str to list
-        self.assertEqual(['3', '154', '0,0'], str2list('3,154 0,0 66'))
+        self.assertEqual(['3', '154', '0,0'], str2list('3,154 0,0'))
 
+    def test_one_parameter(self):
+        # convert just one parameter
+        self.assertEqual(['3', '154'], str2list('3,154'))
+
+    def test_convert_parameter_spaces(self):
+        # convert just one parameter
+        self.assertEqual(['3', '154'], str2list('   3,154 '))
